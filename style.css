@@ -1,0 +1,300 @@
+/* --- GLOBAL RESET & MOBILE FIXES --- */
+:root {
+    --primary-green: #2E7D32;
+    --dark-green: #1B5E20;
+    --light-green: #A5D6A7;
+    --hover-green: #E8F5E9;
+    --bg-color: #F1F8E9;
+    --text-color: #333333;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Removes the annoying white/gray tap highlight on mobile devices */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+/* Fixes the white baseline gap under all images globally */
+img {
+    display: block; 
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scrolling on mobile */
+}
+
+/* --- NAVIGATION (NOW FULLY RESPONSIVE) --- */
+header {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav h1 {
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: var(--white);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--light-green);
+    color: var(--dark-green);
+}
+
+/* --- MAIN CONTENT CONTAINER --- */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+h2.section-title {
+    text-align: center;
+    color: var(--dark-green);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    border-bottom: 3px solid var(--light-green);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.center-text {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* --- GRID LAYOUT FOR BLOCKS --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* --- HOME PAGE BLOCKS --- */
+.category-block {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: block;
+}
+
+.category-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(46, 125, 50, 0.3);
+}
+
+.category-block img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--light-green);
+}
+
+.category-block .block-content {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: var(--white);
+    transition: background 0.3s;
+}
+
+.category-block:hover .block-content {
+    background-color: var(--hover-green);
+}
+
+.category-block h3 {
+    color: var(--primary-green);
+    font-size: 1.25rem;
+}
+/* --- SUB-PAGE ENTITY BLOCKS (Now matching Home Page size) --- */
+.entity-block {
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Removed margin-bottom since it's now in a grid */
+}
+
+.entity-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(46, 125, 50, 0.3);
+}
+
+/* The summary acts as the clickable card header */
+.entity-block summary {
+    padding: 0; 
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* Stacks image on top of text */
+    align-items: stretch;
+    list-style: none;
+    transition: background 0.3s;
+}
+
+.entity-block summary::-webkit-details-marker {
+    display: none; 
+}
+
+.entity-block summary:hover {
+    background-color: var(--hover-green);
+}
+
+/* Image styling to match home page blocks */
+.entity-block summary img {
+    width: 100%;
+    height: 200px; /* Same height as home page images */
+    object-fit: cover;
+    border-bottom: 3px solid var(--light-green);
+    border-radius: 0; 
+    flex-shrink: 0;
+}
+
+/* Text container styling to match home page blocks */
+.entity-block summary div {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: var(--white);
+}
+
+.entity-block summary h3 {
+    color: var(--primary-green);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-block summary p.click-hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+}
+
+/* The expanded details content */
+.entity-details-content {
+    padding: 1.5rem;
+    background-color: #FAFAFA;
+    border-top: 2px dashed var(--light-green);
+    text-align: left; /* Ensures text inside details is left-aligned */
+}
+
+.entity-details-content p {
+    margin-bottom: 0.75rem;
+}
+
+.entity-details-content strong {
+    color: var(--primary-green);
+}
+
+/* --- FOOTER / ABOUT SECTION --- */
+.about-section {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 3rem;
+    border-left: 5px solid var(--primary-green);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.about-section h3 {
+    color: var(--dark-green);
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--light-green);
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--dark-green);
+    color: var(--white);
+    margin-top: 3rem;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (MAX-WIDTH: 768PX)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Stack navigation vertically on mobile */
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Force grid to a single column on small screens */
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack entity block images and text vertically on mobile */
+    .entity-block summary {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .entity-block summary img {
+        width: 100%;
+        height: 180px;
+    }
+
+    h2.section-title {
+        font-size: 1.5rem;
+    }
+}
